@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: sorveteria-gelato
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn ERP.wsgi:application"
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: DATABASE_URL
+        fromDatabase:
+          name: sorveteria-db
+          property: connectionString
+
+databases:
+  - name: sorveteria-db
+    databaseName: sorveteria
+    user: sorveteria_user

@@ -1,0 +1,51 @@
+{% extends 'global/base.html' %}
+{% load static %}
+
+{% block title %}Cadastro - Sorveteria Delícia Gelada{% endblock %}
+
+{% block content %}
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <h1>Cadastre-se</h1>
+      <p>Crie sua conta para acessar o sistema da sorveteria</p>
+    </div>
+    
+    <form method="post" action="{% url 'register' %}" class="login-form">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="username">Nome de Usuário</label>
+        <input type="text" id="username" name="username" required autocomplete="username">
+      </div>
+      
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" required autocomplete="email">
+      </div>
+      
+      <div class="form-group">
+        <label for="password1">Senha</label>
+        <input type="password" id="password1" name="password1" required autocomplete="new-password">
+      </div>
+      
+      <div class="form-group">
+        <label for="password2">Confirme a Senha</label>
+        <input type="password" id="password2" name="password2" required autocomplete="new-password">
+      </div>
+      
+      <button type="submit" class="btn-primary">Cadastrar</button>
+      
+      <div class="form-footer">
+        <p>Já tem uma conta? <a href="{% url 'login' %}">Faça login</a></p>
+      </div>
+    </form>
+    
+    {% if error %}
+      <div id="login-message" class="error-message">
+        <i class="error-icon">!</i>
+        <span>{{ error }}</span>
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

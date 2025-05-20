@@ -1,0 +1,41 @@
+{% extends 'global/base.html' %}
+{% load static %}
+
+{% block title %}Login - Sorveteria Delícia Gelada{% endblock %}
+
+{% block content %}
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <h1>Bem-vindo(a)!</h1>
+      <p>Acesse sua conta para gerenciar os produtos da sorveteria</p>
+    </div>
+    
+    <form method="post" action="{% url 'login' %}" class="login-form">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="username">Usuário</label>
+        <input type="text" id="username" name="username" required autocomplete="username">
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <input type="password" id="password" name="password" required autocomplete="current-password">
+      </div>
+      
+      <button type="submit" class="btn-primary">Entrar</button>
+      
+      <div class="form-footer">
+        <p>Não tem uma conta? <a href="{% url 'register' %}">Cadastre-se</a></p>
+      </div>
+    </form>
+    
+    {% if error %}
+      <div id="login-message" class="error-message">
+        <i class="error-icon">!</i>
+        <span>{{ error }}</span>
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
