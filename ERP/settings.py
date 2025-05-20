@@ -28,7 +28,7 @@ DEBUG = False
 ALLOWED_HOSTS = ['*']
 
 # CSRF settings for production
-CSRF_TRUSTED_ORIGINS = ['https://8000-isa33pxs7ahyfdo3v0yau-77dd0997.manusvm.computer']
+CSRF_TRUSTED_ORIGINS = ['https://*.railway.app', 'https://web-production-48182.up.railway.app']
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 
